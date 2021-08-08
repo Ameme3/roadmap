@@ -1,0 +1,35 @@
+#######################################################################
+# LOCAL DEPLOYMENT
+#######################################################################
+docker-compose build
+docker-compose up -d
+
+
+#######################################################################
+# FIRST TIME DEPLOYMENT
+#######################################################################
+
+# Connect to the server
+ssh almins@vlhprj645docker.hevs.ch
+
+# Clone your repo
+git clone https:........
+
+# Go into your repo
+cd <xyz>
+
+# Build the Docker images
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml build
+
+# Create the Docker containers
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+
+#######################################################################
+# EVERY TIME YOU UPDATE YOUR CODE
+#######################################################################
+
+# Update code
+git pull
+
+# Re-build images & re-create containers
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml build && docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d

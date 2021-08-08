@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  backend:
+    # Map source code to the container
+    volumes:
+      - ./src:/usr/src/app
+    # Make app available on localhost:8000
+    ports:
+      - 8000:8000
+
+  pgadmin:
+    # Make phpMyAdmin available on localhost:8888
+    ports:
+      - 8888:80

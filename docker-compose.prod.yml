@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  backend:
+    labels:
+      - 'traefik.backend=${TRAEFIK_BACKEND}'
+      - 'traefik.docker.network=prod'
+      - 'traefik.frontend.rule=Host:${TRAEFIK_URL}'
+      - 'traefik.port=8000'
+      - 'traefik.enable=true'
+    networks:
+      - default
+      - prod
+
+  pgadmin:
+    labels:
+      - 'traefik.backend=${TRAEFIK_BACKEND_PGADMIN}'
+      - 'traefik.docker.network=prod'
+      - 'traefik.frontend.rule=Host:${TRAEFIK_URL_PGADMIN}'
+      - 'traefik.enable=true'
+    networks:
+      - default
+      - prod
+
+networks:
+  prod:
+    external: true
+    name: ${TRAEFIK_NETWORK}
